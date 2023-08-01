@@ -1,0 +1,79 @@
+﻿@model FinalProject.Models.FeaturedHousesVModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="jumbotron">
+    <img src="~/images/jumbo.jpg" class="img-responsive" alt="House">
+  <h1>@Model.Title</h1>
+</div>
+
+
+
+
+<div class="row">
+
+  @foreach(FeaturedHouses featuredHouses in @Model.FeaturedHouses)
+   {
+        <div class="col-sm-6 col-md-4 buy">
+            <div class="card border-black">
+                <img class="card-img-top w-100" src="@Url.Content(featuredHouses.ImagePath)" alt="Featured Houses">
+                <div class="card-body">
+                     <h1 class="card-title sale">HOUSE FOR SALE!</h1>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+
+
+   }
+
+  
+</div>
+ 
+
+<div class="row">
+
+        <div class="col-sm-6 col-md-4 maincardbody">
+            <div class="card border-black">
+                <img class="card-img-top w-100" src="~/images/buy.png" alt="Buying a Home">
+                <div class="card-body">
+                     <p>Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
+                     <button type="button" class="btn btn-lg btn-primary mb-3"><a class="cardlink" asp-area="" asp-controller="Home" asp-action="Buy">Buy</a></button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-md-4 maincardbody">
+            <div class="card border-black">
+                <img class="card-img-top w-100" src="~/images/office.png" alt="Vist our Office">
+                <div class="card-body">
+                     <p>Visit our office today to find a perfect home for you.</p>
+                     <br />
+                     <button type="button" class="btn btn-lg btn-primary mb-3"><a class="cardlink" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 maincardbody">
+            <div class="card border-black">
+                <img class="card-img-top w-100" src="~/images/rent.png" alt="Rent a Home">
+                <div class="card-body">
+                     <p>Your next place is closer than you think. Explore the possibilities, and discover a rental you’ll love.</p>
+                     <button type="button" class="btn btn-lg btn-primary mb-3"><a class="cardlink" asp-area="" asp-controller="Home" asp-action="Rent">Rent</a></button>
+                </div>
+            </div>
+        </div>
+        
+
+  
+</div>
+
+
+
+

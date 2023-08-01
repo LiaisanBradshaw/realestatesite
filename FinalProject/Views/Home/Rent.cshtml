@@ -1,0 +1,68 @@
+﻿@model FinalProject.Models.RentViewModel
+@{
+    ViewData["Title"] = "Rent";
+}
+<h1>@Model.Title</h1>
+
+<h2>
+    Sort by Price:
+    @Html.ActionLink("High to Low","Rent", "Home", new {highLow=true}, new {@class="btn btn-primary btn-sm"} )
+    @Html.ActionLink("Low to High","Rent", "Home", new {lowHigh=true}, new {@class="btn btn-primary btn-sm"} )
+</h2>
+
+<div class="row">
+
+  @foreach(Rent rent in @Model.rent)
+   {
+        <div class="col-sm-6 col-md-3 buy">
+            <div class="card border-black">
+                <img class="card-img-top w-100" src="@Url.Content(rent.ImagePath)" alt="Featured Houses">
+                <div class="card-body">
+                     <h5 class="card-title">@rent.Description</h5>
+                     <p class="card-text">@rent.Address</p>
+                     <p class="card-text text-end">@rent.Price.ToString("C")</p>  
+
+                      @{
+                        string id = "test" + rent.Id;
+                        string target = "#test" + rent.Id;
+                    }
+                     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="collapse" data-bs-target=@target >Learn More</button>
+                     <div id=@id class="collapse in">
+                         <table class="table table-striped">
+                             <tr>
+                                 <td>Pets Allowed:</td>
+                                 <td class="text-end">@((@rent.IsPet)?"Yes":"No")</td>
+                            </tr>
+                             <tr>
+                                 <td>Swimming Pool:</td>
+                                 <td class="text-end">@((@rent.Pool)?"Yes":"No")</td>
+                            </tr>
+                             <tr>
+                                 <td>Playground:</td>
+                                 <td class="text-end">@((@rent.Playground)?"Yes":"No")</td>
+                            </tr>
+                             <tr>
+                                 <td>Fitness Center:</td>
+                                 <td class="text-end">@((@rent.Gym)?"Yes":"No")</td>
+                            </tr>
+                            <tr>
+                                 <td>Parking:</td>
+                                 <td class="text-end">@rent.Parking</td>
+                                 
+                            </tr>
+                         </table>
+    
+                    </div>
+ 
+                </div>
+                
+            </div>
+        </div>
+        
+        
+
+
+   }
+
+  
+</div>

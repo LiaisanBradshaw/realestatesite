@@ -1,0 +1,74 @@
+﻿@model FinalProject.Models.BuyViewModel
+@{
+    ViewData["Title"] = "Buy";
+}
+<h1>
+    @Model.Title
+</h1>
+<h2>
+    Sort by Price:
+    @Html.ActionLink("High to Low","Buy", "Home", new {highLow=true}, new {@class="btn btn-primary btn-sm"} )
+    @Html.ActionLink("Low to High","Buy", "Home", new {lowHigh=true}, new {@class="btn btn-primary btn-sm"} )
+</h2>
+
+
+<div class="row">
+
+  @foreach(Buy buy in @Model.Buy)
+   {
+        <div class="col-sm-6 col-md-4 buy">
+            <div class="card border-black">
+                <img class="card-img-top w-100" src="@Url.Content(buy.ImagePath)" alt="Featured Houses">
+                <div class="card-body">
+                     <h5 class="card-title">@buy.Description</h5>
+                     <p class="card-text">@buy.Address</p>
+                     <p class="card-text text-end">@buy.Price.ToString("C")</p>  
+                    @{
+                        string id = "test" + buy.Id;
+                        string target = "#test" + buy.Id;
+                    }
+                     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="collapse" data-bs-target=@target >Learn More</button>
+                     <div id=@id class="collapse in">
+                         <ul>
+                              <li>@buy.Built</li>
+                              <li>@buy.Parking</li>
+                         </ul>
+                         <h2 class="text-end">Estimated monthly cost: @buy.monthlyEta.ToString("C")</h2>
+                         <table class="table table-striped">
+                             <tr>
+                                 <td>Principal & interest</td>
+                                 <td class="text-end">@buy.Interest.ToString("C")</td>
+                            </tr>
+                             <tr>
+                                 <td>Mortgage insurance</td>
+                                 <td class="text-end">@buy.mortgageInsurance.ToString("C")</td>
+                            </tr>
+                             <tr>
+                                 <td>Property taxes</td>
+                                 <td class="text-end">@buy.propertyTaxes.ToString("C")</td>
+                            </tr>
+                             <tr>
+                                 <td>Home insurance</td>
+                                 <td class="text-end">@buy.homeInsurance.ToString("C")</td>
+                            </tr>
+                            <tr>
+                                 <td>Utilities</td>
+                                 <td class="text-end">@buy.Utilities</td>
+                            </tr>
+                         </table>
+    
+                    </div>
+      
+                     
+                </div>
+                
+            </div>
+        </div>
+        
+        
+
+
+   }
+
+  
+</div>
